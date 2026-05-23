@@ -121,10 +121,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             repository.populateInitialCatalogIfEmpty()
             refreshAdminStats()
             
-            // Auto sign-in a demo VIP customer during physical run to avoid dead screen locks on first load
-            withContext(Dispatchers.Main) {
-                demoLogin()
-            }
+            // Auto sign-in a demo VIP customer during physical run or simulator load
+            demoLogin()
         }
     }
 

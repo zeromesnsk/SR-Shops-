@@ -21,7 +21,13 @@ class GreetingScreenshotTest {
 
   @Test
   fun greeting_screenshot() {
-    composeTestRule.setContent { MyApplicationTheme { Greeting("Robolectric") } }
+    val app = androidx.test.core.app.ApplicationProvider.getApplicationContext<android.app.Application>()
+    val viewModel = com.example.ui.AppViewModel(app)
+    composeTestRule.setContent { 
+      MyApplicationTheme { 
+        com.example.ui.ShopsAppUI(viewModel = viewModel) 
+      } 
+    }
 
     composeTestRule.onRoot().captureRoboImage(filePath = "src/test/screenshots/greeting.png")
   }
